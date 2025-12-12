@@ -300,57 +300,273 @@ span{
 }
 
 /* ========== PORTFOLIO ========== */
+/* === PORTFOLIO SECTION === */
+/* === THEME TOKENS === */
+:root{
+  --bg: #111827;
+  --surface: #1f2937;
+  --text: #e5e7eb;
+  --muted: rgba(229,231,235,0.72);
+  --primary: #ff014f;
+  --primary-soft: rgba(255, 1, 79, 0.08);
+  --ring: rgba(255, 1, 79, 0.25);
+}
 
+/* === SECTION === */
 .portfolio-section{
-    background: #050509;
+  padding:60px 20px;
+  background: var(--bg);
+  color: var(--text);
+  min-height:100vh;
+  box-sizing:border-box;
 }
+.section-head{max-width:1100px;margin:0 auto 24px;}
+.portfolio-subtitle{
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:var(--muted);
+  margin:0 0 8px;
+}
+.portfolio-title{margin:0;font-weight:800}
 
+/* === GRID === */
 .portfolio-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2.4rem;
+  max-width:1100px;margin:0 auto;
+  display:grid;gap:24px;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 }
 
+/* === CARD === */
 .portfolio-card{
-    background: #111827;
-    border-radius: 1.8rem;
-    border: 1px solid #1f2937;
-    overflow: hidden;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.6);
-    transition: 0.3s ease;
+  background:var(--surface);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:18px; overflow:hidden;
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+  transition:transform .25s ease, box-shadow .25s ease;
 }
-
 .portfolio-card:hover{
-    transform: translateY(-6px);
-    border-color: #ff014f;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.8);
+  transform:translateY(-3px);
+  box-shadow:0 14px 30px rgba(0,0,0,.45);
 }
 
-.portfolio-image img{
-    width: 100%;
-    display: block;
+/* === SLIDER AREA === */
+.slider{
+  position:relative; overflow:hidden;
+  aspect-ratio:16/10; background:#0b1220;
+}
+.track{display:flex;transition:transform .35s ease;}
+.track img{width:100%;height:100%;object-fit:cover;flex:0 0 100%;}
+
+/* Arrows */
+.nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:34px;height:34px;border-radius:999px;border:1px solid var(--primary);
+  background:var(--primary-soft); color:var(--text);
+  cursor:pointer; display:grid; place-items:center; font-weight:700;
+  box-shadow:0 6px 14px var(--ring);
+}
+.nav.prev{left:10px;} .nav.next{right:10px;}
+.nav:hover{background:rgba(255,1,79,.16);}
+
+/* Dots */
+.dots{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:6px;}
+.dots button{
+  width:7px;height:7px;border-radius:999px;border:none;
+  background:rgba(255,255,255,.35);cursor:pointer;
+}
+.dots button.active{background:var(--primary);width:16px;}
+
+/* === CARD BODY === */
+.card-body{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 18px;background:var(--surface);
+  border-top:1px solid var(--primary-soft);
+}
+.card-title{margin:0 0 4px;font-size:1rem;color:var(--text);}
+.card-meta{margin:0;font-size:.9rem;color:var(--muted);}
+
+/* CTA bulat di kanan bawah kartu */
+.cta{
+  width:40px;height:40px;border-radius:999px;
+  background:var(--primary); color:#fff; text-decoration:none;
+  display:grid;place-items:center;font-weight:800;font-size:20px;
+  box-shadow:0 10px 18px var(--ring);
+  transition:transform .2s ease, filter .2s ease;
+}
+.cta:hover{transform:scale(1.06);filter:brightness(1.05);}
+
+/* Fokus aksesibilitas */
+.nav:focus-visible,.cta:focus-visible,.dots button:focus-visible{
+  outline:2px solid var(--primary); outline-offset:2px;
 }
 
-.portfolio-content{
-    padding: 1.6rem 1.8rem 2rem;
+/*A44444*/
+:root{
+  --accent: #ff014f;
+  --bg1: #111827;
+  --bg2: #1f2937;
+  --glass: rgba(0,0,0,0.7);
 }
 
-.portfolio-tag{
-    display: inline-block;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #ff014f;
-    background: rgba(255,1,79,0.08);
-    padding: 0.4rem 1.2rem;
-    border-radius: 999px;
-    margin-bottom: 0.8rem;
+/* SECTION */
+.commission-section{
+  padding: 80px 8%;
+  background:
+    radial-gradient(1000px 420px at 50% 15%, rgba(255,1,79,.18), transparent 60%),
+    linear-gradient(180deg, var(--bg1), #0b1220);
 }
 
-.portfolio-content p{
-    font-size: 1.3rem;
-    color: #e5e7eb;
-    margin-top: 0.4rem;
+/* A4 frame (tetap, tapi jangan bikin kecil di layar) */
+.a4-frame{
+  max-width: 1200px;          /* >>> bikin lebar di layar */
+  margin: 0 auto;
+}
+
+/* HEAD */
+.commission-subtitle{
+  color: rgba(255,1,79,.95);
+  font-weight: 700;
+  letter-spacing: .14em;
+  font-size: .95rem;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+/* WRAP */
+.commission-wrap{
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* NAV BUTTON */
+.c-nav{
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,1,79,.55);
+  background: rgba(17,24,39,.55);
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  transition: .25s ease;
+  box-shadow: 0 0 0 rgba(255,1,79,0);
+}
+.c-nav:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,1,79,.95);
+  box-shadow: 0 0 22px rgba(255,1,79,.25);
+}
+
+/* VIEWPORT */
+.commission-viewport{
+  overflow: hidden;
+  flex: 1;
+  border-radius: 22px;
+  padding: 18px 8px;
+  background: linear-gradient(180deg, rgba(31,41,55,.25), rgba(0,0,0,0));
+  border: 1px solid rgba(255,1,79,.22);
+}
+
+/* TRACK */
+.commission-track{
+  display: flex;
+  gap: 34px;                  /* >>> lebih lega */
+  align-items: center;
+  transition: transform .45s ease;
+  will-change: transform;
+}
+
+/* POSTER CARD (BESAR) */
+.poster-card{
+  position: relative;
+  width: 320px;               /* >>> lebih besar */
+  height: 460px;              /* >>> lebih besar */
+  border-radius: 20px;
+  background: var(--bg2);
+  border: 2px solid rgba(255,1,79,.35);
+  overflow: hidden;
+  box-shadow: 0 14px 55px rgba(0,0,0,.55);
+  transform: scale(.95);
+  opacity: .9;
+  transition: transform .35s ease, opacity .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+
+/* IMAGE */
+.poster-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.05) saturate(1.05);
+}
+
+/* GLOW */
+.poster-glow{
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  pointer-events: none;
+  box-shadow: 0 0 0 rgba(255,1,79,0);
+  transition: .35s ease;
+}
+
+/* CAPTION */
+.poster-caption{
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  background: var(--glass);   /* >>> rgba(0,0,0,0.7) */
+  color: #fff;
+  border: 1px solid rgba(255,1,79,.22);
+}
+.poster-caption h3{
+  font-size: 1rem;
+  margin: 0 0 4px 0;
+  letter-spacing: .04em;
+}
+.poster-caption span{
+  font-size: .78rem;
+  color: rgba(255,1,79,.95);
+  letter-spacing: .14em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* ACTIVE (TENGAH) */
+.poster-card.is-active{
+  transform: scale(1.08);
+  opacity: 1;
+  border-color: rgba(255,1,79,.95);
+  box-shadow: 0 18px 70px rgba(0,0,0,.65), 0 0 28px rgba(255,1,79,.18);
+}
+.poster-card.is-active .poster-glow{
+  box-shadow: 0 0 28px rgba(255,1,79,.28);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px){
+  .poster-card{ width: 290px; height: 420px; }
+}
+@media (max-width: 900px){
+  .poster-card{ width: 250px; height: 380px; }
+}
+@media (max-width: 680px){
+  .c-nav{ display:none; }
+  .commission-viewport{ overflow-x: auto; }
+  .commission-track{ transition: none; padding-bottom: 10px; }
+}
+
+/* PRINT A4 (kalau kamu mau export PDF) */
+@media print{
+  @page { size: A4; margin: 12mm; }
+  .c-nav{ display:none !important; }
+  .commission-section{ background:#fff !important; }
+  .commission-subtitle{ color:#000 !important; }
 }
 
 /* ========== EDUCATION ========== */
